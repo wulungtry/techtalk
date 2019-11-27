@@ -1,0 +1,26 @@
+syntax = "proto3";
+package personal;
+
+import "github.com/wulungtry/techtalk/api/proto/response/response.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "person";
+
+message AddPersonModel {
+    string Name = 1;
+    string CityOfBirth = 2;
+    google.protobuf.Timestamp DateOfBirth = 3;
+    int32 Height = 4;
+    int32 Weight = 5;
+    bool IsMarried = 6;
+}
+
+service PersonalService {
+    rpc AddPerson(AddPersonModel) returns (response.ResponseBase) {
+        option (google.api.http) = {
+            post: "/personal/person"
+            body: "*"
+        };
+    }
+}

@@ -3,8 +3,8 @@ package infra
 import (
 	"context"
 	"fmt"
-	"github.com/developerserasiautoraya/fms-dm-attendance/api/proto/absence"
-	"github.com/developerserasiautoraya/fms-dm-attendance/common"
+	"github.com/wulungtry/techtalk"
+	"github.com/wulungtry/techtalk/common"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
