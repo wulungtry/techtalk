@@ -1,0 +1,19 @@
+{
+  "connstr": {
+    "drvr": "mssql",
+    "dial": "sqlserver",
+    "user": "sa",
+    "pass": "password",
+    "host": "localhot",
+    "port": "1433",
+    "dbse": "techtalk"
+  },
+  "grpc": {
+    "addr": "localhost",
+    "port": "9090"
+  },
+  "rest": {
+    "addr": "localhost",
+    "port": "8080"
+  }
+}
