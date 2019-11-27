@@ -2,13 +2,13 @@ package infra
 
 import (
 	"context"
-	"github.com/developerserasiautoraya/fms-dm-attendance/controller"
+	"github.com/wulungtry/techtalk/controller"
 )
 
 func RunServer() error {
 	ctx := context.Background()
 
-	gService := controller.NewAbsenceServiceServer()
+	gService := controller.NewPersonalServiceServer()
 	go func() {
 		_ = RunREST(ctx)
 	}()

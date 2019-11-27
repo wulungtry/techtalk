@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/spf13/viper"
+	"github.com/wulungtry/techtalk/api/proto/person"
 	"github.com/wulungtry/techtalk/common"
 	"google.golang.org/grpc"
 	"log"
@@ -13,10 +14,10 @@ import (
 )
 
 type Handler struct {
-	Absence absence.AbsenceServiceServer
+	Person person.PersonalServiceServer
 }
 
-func RunGRPC(ctx context.Context, abs absence.AbsenceServiceServer) error {
+func RunGRPC(ctx context.Context, pers person.PersonalServiceServer) error {
 	port := viper.GetString("grpc.port")
 	address := fmt.Sprintf(":%s", port)
 	listen, err := net.Listen(common.TCP, address)
@@ -26,7 +27,7 @@ func RunGRPC(ctx context.Context, abs absence.AbsenceServiceServer) error {
 	}
 
 	server := grpc.NewServer()
-	absence.RegisterAbsenceServiceServer(server, abs)
+	person.RegisterPersonalServiceServer(server, pers)
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)

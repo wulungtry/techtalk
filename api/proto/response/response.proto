@@ -3,7 +3,7 @@ package response;
 
 import "google/protobuf/any.proto";
 
-option go_package = "personal";
+option go_package = "response";
 
 message ResponseBase {
     enum StatusCode {

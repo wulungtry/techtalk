@@ -8,12 +8,13 @@ import "google/protobuf/timestamp.proto";
 option go_package = "person";
 
 message AddPersonModel {
-    string Name = 1;
-    string CityOfBirth = 2;
-    google.protobuf.Timestamp DateOfBirth = 3;
-    int32 Height = 4;
-    int32 Weight = 5;
-    bool IsMarried = 6;
+    string PersonalId = 1;
+    string Name = 2;
+    string CityOfBirth = 3;
+    google.protobuf.Timestamp DateOfBirth = 4;
+    int32 Height = 5;
+    int32 Weight = 6;
+    bool IsMarried = 7;
 }
 
 service PersonalService {

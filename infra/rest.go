@@ -3,10 +3,10 @@ package infra
 import (
 	"context"
 	"fmt"
-	"github.com/wulungtry/techtalk"
-	"github.com/wulungtry/techtalk/common"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/spf13/viper"
+	"github.com/wulungtry/techtalk/api/proto/person"
+	"github.com/wulungtry/techtalk/common"
 	"google.golang.org/grpc"
 	"log"
 	"net/http"
@@ -27,7 +27,7 @@ func RunREST(ctx context.Context) error {
 	grpcPort := viper.GetString("grpc.port")
 	endpoint := fmt.Sprintf("%s:%s", grpcAddr, grpcPort)
 
-	if err := absence.RegisterAbsenceServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
+	if err := person.RegisterPersonalServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
 		log.Fatalf(common.FailToStartServer("HTTP Gateway"))
 	}
 
