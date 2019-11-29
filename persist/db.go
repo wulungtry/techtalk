@@ -3,6 +3,7 @@ package persist
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"github.com/spf13/viper"
 )
 

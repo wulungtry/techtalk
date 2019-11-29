@@ -9,7 +9,10 @@ import (
 
 func main() {
 	persist.ViperInit()
-	if err := infra.RunServer(); err != nil {
+
+	db, _ := persist.NewDB()
+
+	if err := infra.RunServer(db); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		os.Exit(1)
 	}

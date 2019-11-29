@@ -2,13 +2,14 @@ package infra
 
 import (
 	"context"
+	"github.com/jinzhu/gorm"
 	"github.com/wulungtry/techtalk/controller"
 )
 
-func RunServer() error {
+func RunServer(db *gorm.DB) error {
 	ctx := context.Background()
 
-	gService := controller.NewPersonalServiceServer()
+	gService := controller.NewPersonalServiceServer(db)
 	go func() {
 		_ = RunREST(ctx)
 	}()
