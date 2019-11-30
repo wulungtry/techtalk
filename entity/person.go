@@ -2,7 +2,7 @@ package entity
 
 import "time"
 
-type Person struct {
+type Personaldata struct {
 	Personalid  string    `gorm:"primary_key" gorm:"column:PersonalId"`
 	Name        string    `gorm:"column:Name"`
 	Cityofbirth string    `gorm:"column:CityOfBirth"`

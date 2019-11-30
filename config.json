@@ -2,11 +2,11 @@
   "connstr": {
     "drvr": "mssql",
     "dial": "sqlserver",
-    "user": "sa",
-    "pass": "password",
-    "host": "localhot",
+    "user": "adminseradb",
+    "pass": "Serasi123",
+    "host": "dmdbtest.database.windows.net",
     "port": "1433",
-    "dbse": "techtalk"
+    "dbse": "dmdbtest_toprod"
   },
   "grpc": {
     "addr": "localhost",

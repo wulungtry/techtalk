@@ -1,0 +1,85 @@
+syntax = "proto3";
+package personal;
+
+import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "personal";
+
+message GetAllModel{}
+
+message GetByIdModel{
+    string PersonalId = 1;
+}
+
+message AddPersonModel {
+    string PersonalId = 1;
+    string Name = 2;
+    string CityOfBirth = 3;
+    google.protobuf.Timestamp DateOfBirth = 4;
+    int32 Height = 5;
+    int32 Weight = 6;
+    bool IsMarried = 7;
+}
+
+message UpdatePersonModel{
+    string PersonalId = 1;
+    string Name = 2;
+    string CityOfBirth = 3;
+    google.protobuf.Timestamp DateOfBirth = 4;
+    int32 Height = 5;
+    int32 Weight = 6;
+    bool IsMarried = 7;
+}
+
+message ResponseModel {
+    enum StatusCode {
+        FAIL = 0;
+        SUCCESS = 1;
+    }
+    StatusCode status = 1;
+    string message = 2;
+    google.protobuf.Any data = 3;
+}
+
+message GetResponseModel {
+    string Name = 1;
+    string CityOfBirth = 2;
+    google.protobuf.Timestamp DateOfBirth = 3;
+    int32 Height = 4;
+    int32 Weight = 5;
+    bool IsMarried = 6;
+}
+
+message GetAllResponseModel {
+    repeated GetResponseModel Data = 1;
+}
+
+service PersonalService {
+    rpc AddPerson(AddPersonModel) returns (ResponseModel) {
+        option (google.api.http) = {
+            post: "/personal/person"
+            body: "*"
+        };
+    }
+
+    rpc UpdatePerson(UpdatePersonModel) returns (ResponseModel){
+        option (google.api.http) = {
+            put: "/personal/person"
+            body: "*"
+        };
+    }
+
+    rpc GetPersonById(GetByIdModel) returns (GetResponseModel){
+        option (google.api.http) = {
+            get: "/personal/person/{PersonalId}"
+        };
+    }
+
+    rpc GetAllPerson(GetAllModel) returns (GetAllResponseModel){
+        option (google.api.http) = {
+            get: "/personal/person"
+        };
+    }
+}

@@ -14,10 +14,10 @@ import (
 )
 
 type Handler struct {
-	Person person.PersonalServiceServer
+	Person personal.PersonalServiceServer
 }
 
-func RunGRPC(ctx context.Context, pers person.PersonalServiceServer) error {
+func RunGRPC(ctx context.Context, pers personal.PersonalServiceServer) error {
 	port := viper.GetString("grpc.port")
 	address := fmt.Sprintf(":%s", port)
 	listen, err := net.Listen(common.TCP, address)
@@ -27,7 +27,7 @@ func RunGRPC(ctx context.Context, pers person.PersonalServiceServer) error {
 	}
 
 	server := grpc.NewServer()
-	person.RegisterPersonalServiceServer(server, pers)
+	personal.RegisterPersonalServiceServer(server, pers)
 
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)

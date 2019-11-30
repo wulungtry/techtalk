@@ -27,7 +27,7 @@ func RunREST(ctx context.Context) error {
 	grpcPort := viper.GetString("grpc.port")
 	endpoint := fmt.Sprintf("%s:%s", grpcAddr, grpcPort)
 
-	if err := person.RegisterPersonalServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
+	if err := personal.RegisterPersonalServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
 		log.Fatalf(common.FailToStartServer("HTTP Gateway"))
 	}
 

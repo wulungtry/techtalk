@@ -12,6 +12,20 @@
   ],
   "paths": {
     "/personal/person": {
+      "get": {
+        "operationId": "GetAllPerson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/personalGetAllResponseModel"
+            }
+          }
+        },
+        "tags": [
+          "PersonalService"
+        ]
+      },
       "post": {
         "operationId": "AddPerson",
         "responses": {
@@ -60,6 +74,30 @@
           "PersonalService"
         ]
       }
+    },
+    "/personal/person/{PersonalId}": {
+      "get": {
+        "operationId": "GetPersonById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/personalGetResponseModel"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "PersonalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PersonalService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -77,6 +115,44 @@
         "PersonalId": {
           "type": "string"
         },
+        "Name": {
+          "type": "string"
+        },
+        "CityOfBirth": {
+          "type": "string"
+        },
+        "DateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Weight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsMarried": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "personalGetAllResponseModel": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/personalGetResponseModel"
+          }
+        }
+      }
+    },
+    "personalGetResponseModel": {
+      "type": "object",
+      "properties": {
         "Name": {
           "type": "string"
         },

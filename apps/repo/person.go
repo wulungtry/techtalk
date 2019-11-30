@@ -2,6 +2,7 @@ package repo
 
 import (
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"github.com/wulungtry/techtalk/apps/domain"
 	"github.com/wulungtry/techtalk/entity"
 )
@@ -24,8 +25,8 @@ func (pr *PersonRepo) Add(p *entity.Person) error {
 	return nil
 }
 
-func (pr *PersonRepo) Update(person *entity.Person) error {
-	if err := pr.db.Update(person).Error; err != nil {
+func (pr *PersonRepo) Update(p *entity.Person) error {
+	if err := pr.db.Table("person").Save(p).Error; err != nil {
 		return err
 	}
 
@@ -34,14 +35,15 @@ func (pr *PersonRepo) Update(person *entity.Person) error {
 
 func (pr *PersonRepo) GetAll() []domain.Person {
 	var result []domain.Person
-	pr.db.Table("person").Find(&result)
+	pr.db.Table("person").Scan(&result)
 
 	return result
 }
 
 func (pr *PersonRepo) GetById(id string) domain.Person {
 	var result domain.Person
-	pr.db.Table("person").First(&result, id)
+	pr.db.Table("person").Where("personalid = ?", id).Limit(1).Scan(&result)
+	//pr.db.Table("person").Select().Where(&entity.Person{Personalid: id}).FirstOrInit(&result)
 
 	return result
 }
